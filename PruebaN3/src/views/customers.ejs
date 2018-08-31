@@ -1,0 +1,74 @@
+<% include partials/_header %>
+
+<div class="container mt-5">
+  <div class="row">
+
+
+    <div class="col-md-5">
+      <div class="card-body">
+
+        <form action="/add" method="POST">
+        
+        <div class="form-group">
+            <input type="text" name="id_ciclovia" placeholder="Id Ciclovia" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="text" name="calle_inicio" placeholder="Calle Inicio" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="text" name="calle_fin" placeholder="Calle fin" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="longitud" placeholder="Longitud" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="latitud" placeholder="Latitud" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary">
+            GUARDAR CICLOVIA
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-6">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>id_ciclovia</td>
+            <td>Calle Inicio</td>
+            <td>Calle fin</td>
+            <td>Longitud</td>
+            <td>Latitud</td>
+            <td>Accion</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                
+                <td><%= data[i].id_ciclovia %></td>
+                <td><%= data[i].calle_inicio %></td>
+                <td><%= data[i].calle_fin %></td>
+                <td><%= data[i].longitud  %></td>
+                <td><%= data[i].latitud %></td>
+                <td>
+                  <a href="/update/<%= data[i].id_ciclovia %>" class="btn btn-info">Edit</a>
+                  <a href="/delete/<%= data[i].id_ciclovia %>" class="btn btn-danger">Delete</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<% include partials/_footer %>
